@@ -1,0 +1,4 @@
+com\talkingdata\studentcourse\common\entity\EnrollRecord.class
+com\talkingdata\studentcourse\common\EnrollmentProcessorTestRunner.class
+com\talkingdata\studentcourse\common\EnrollmentProcessorDemo.class
+com\talkingdata\studentcourse\common\util\EnrollmentProcessor.class

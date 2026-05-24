@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn test *)",
+      "Bash(mvn compile *)",
+      "Bash(java -cp \"common/target/classes\" com.talkingdata.studentcourse.common.EnrollmentProcessorTestRunner)"
+    ]
+  }
+}
