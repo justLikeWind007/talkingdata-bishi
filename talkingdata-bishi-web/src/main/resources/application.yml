@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: talkingdata-bishi
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.talkingdata: DEBUG
