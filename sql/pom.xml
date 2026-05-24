@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.talkingdata</groupId>
-        <artifactId>studentCourseSelection</artifactId>
+        <groupId>com.talkingdata.bishi</groupId>
+        <artifactId>talkingdata-bishi-zhouwenjie</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>sql</artifactId>
+    <artifactId>talkingdata-bishi-sql</artifactId>
     <packaging>jar</packaging>
 
-    <name>sql</name>
+    <name>talkingdata-bishi-sql</name>
     <description>SQL题目模块</description>
 </project>

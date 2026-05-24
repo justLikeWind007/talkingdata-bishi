@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.talkingdata</groupId>
-        <artifactId>studentCourseSelection</artifactId>
+        <groupId>com.talkingdata.bishi</groupId>
+        <artifactId>talkingdata-bishi-zhouwenjie</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>common</artifactId>
+    <artifactId>talkingdata-bishi-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>common</name>
+    <name>talkingdata-bishi-common</name>
     <description>公共模块 - 实体类和工具类</description>
 
     <dependencies>

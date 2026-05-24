@@ -5,21 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.talkingdata</groupId>
-        <artifactId>studentCourseSelection</artifactId>
+        <groupId>com.talkingdata.bishi</groupId>
+        <artifactId>talkingdata-bishi-zhouwenjie</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>web</artifactId>
+    <artifactId>talkingdata-bishi-web</artifactId>
     <packaging>jar</packaging>
 
-    <name>web</name>
+    <name>talkingdata-bishi-web</name>
     <description>SpringBoot Web应用 - 题3完整系统</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.talkingdata</groupId>
-            <artifactId>common</artifactId>
+            <groupId>com.talkingdata.bishi</groupId>
+            <artifactId>talkingdata-bishi-common</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
