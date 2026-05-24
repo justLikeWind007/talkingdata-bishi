@@ -10,6 +10,25 @@ spring:
 server:
   port: 8080
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: talkingdata-bishi
+    module: talkingdata-bishi-web
+    description: 高校选课管理系统（CSV导入、去重排序、分类、检索）
+
 logging:
   level:
     com.talkingdata: DEBUG
+    org.springframework.web: INFO

@@ -137,4 +137,30 @@ class EnrollmentServiceUnitTest {
         enrollmentService.processCSVData(csv);
         assertEquals("专业课", enrollmentService.getClassifiedEnrollments().get("专业课").get(0).getCourseType());
     }
+
+    @Test
+    void testImportSummary_WithInvalidRows() {
+        String csv = "S000001,C000001,Java程序设计,专业课\n" +
+                "invalid_line\n" +
+                ",C000003,课程名缺失学生\n" +
+                "S000002,C000002,数据结构,专业课";
+        EnrollmentService.ImportResult result = enrollmentService.importCSVData(csv);
+
+        assertEquals(4, result.totalLineCount());
+        assertEquals(2, result.validRecordCount());
+        assertEquals(2, result.invalidRecordCount());
+        assertEquals(2, result.records().size());
+    }
+
+    @Test
+    void testRuntimeStats_ShouldBeUpdatedAfterImportAndSearch() {
+        enrollmentService.importCSVData("S000001,C000001,Java程序设计,专业课");
+        enrollmentService.search("S000001");
+
+        EnrollmentService.RuntimeStats stats = enrollmentService.getRuntimeStats();
+        assertTrue(stats.importCount() >= 1);
+        assertTrue(stats.searchCount() >= 1);
+        assertTrue(stats.currentRecordCount() >= 1);
+        assertEquals("S000001", stats.lastSearchKeyword());
+    }
 }

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/enrollment")
@@ -21,17 +20,26 @@ public class EnrollmentController {
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("enrollments", enrollmentService.getAllEnrollments());
-        model.addAttribute("classified", enrollmentService.getClassifiedEnrollments());
+        List<EnrollRecord> enrollments = enrollmentService.getAllEnrollments();
+        model.addAttribute("enrollments", enrollments);
+        model.addAttribute("classified", enrollmentService.classify(enrollments));
         return "enrollment";
     }
 
     @PostMapping("/import")
     public String importCSV(@RequestParam("csvData") String csvData, Model model) {
-        List<EnrollRecord> processed = enrollmentService.processCSVData(csvData);
+        EnrollmentService.ImportResult importResult = enrollmentService.importCSVData(csvData);
+        List<EnrollRecord> processed = importResult.records();
         model.addAttribute("enrollments", processed);
-        model.addAttribute("classified", enrollmentService.getClassifiedEnrollments());
-        model.addAttribute("message", "导入成功，共 " + processed.size() + " 条记录");
+        model.addAttribute("classified", enrollmentService.classify(processed));
+        model.addAttribute("message", String.format(
+                "导入完成：输入 %d 行，有效 %d 行，无效 %d 行，去重后 %d 行（去重移除 %d 行）",
+                importResult.totalLineCount(),
+                importResult.validRecordCount(),
+                importResult.invalidRecordCount(),
+                processed.size(),
+                importResult.duplicatesRemoved()
+        ));
         return "enrollment";
     }
 
@@ -42,8 +50,14 @@ public class EnrollmentController {
             model.addAttribute("message", "无匹配选课记录");
         }
         model.addAttribute("enrollments", results);
-        model.addAttribute("classified", enrollmentService.getClassifiedEnrollments());
+        model.addAttribute("classified", enrollmentService.classify(results));
         model.addAttribute("keyword", keyword);
         return "enrollment";
+    }
+
+    @GetMapping("/ops/stats")
+    @ResponseBody
+    public EnrollmentService.RuntimeStats stats() {
+        return enrollmentService.getRuntimeStats();
     }
 }
